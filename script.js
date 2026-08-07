@@ -28,6 +28,53 @@ const taskDueDateInput = document.querySelector("#task-due-date");
 
 const taskList = document.querySelector(".task-list");
 
+const totalTasksElement = document.querySelector("#total-tasks");
+
+const completedTasksElement = document.querySelector("#completed-tasks");
+
+const activeTasksElement = document.querySelector("#active-tasks");
+
+const overdueTasksElement = document.querySelector("#overdue-tasks");
+
+// =================================
+// UPDATE STATISTICS
+// =================================
+
+function updateStats() {
+
+    const totalTasks = tasks.length;
+
+    const completedTasks = tasks.filter(function (task) {
+        return task.completed;
+    }).length;
+
+    const activeTasks = tasks.filter(function (task) {
+        return !task.completed;
+    }).length;
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const overdueTasks = tasks.filter(function (task) {
+
+        return (
+            task.dueDate &&
+            task.dueDate < today &&
+            !task.completed
+        );
+
+    }).length;
+
+
+    totalTasksElement.textContent = totalTasks;
+
+    completedTasksElement.textContent = completedTasks;
+
+    activeTasksElement.textContent = activeTasks;
+
+    overdueTasksElement.textContent = overdueTasks;
+
+}
+
 
 // =================================
 // OPEN MODAL
@@ -87,15 +134,15 @@ taskForm.addEventListener("submit", function (event) {
 
     };
 
-    tasks.push(task);
+
+
+tasks.push(task);
 
 saveTasks();
 
 renderTasks();
 
-taskForm.reset();
-
-closeModal();
+updateStats();
 
 });
 
@@ -192,9 +239,13 @@ taskList.addEventListener("change", function (event) {
 
     task.completed = event.target.checked;
 
+task.completed = event.target.checked;
+
 saveTasks();
 
 renderTasks();
+
+updateStats();
 
 });
 
@@ -216,9 +267,12 @@ taskList.addEventListener("click", function (event) {
     return task.id !== taskId;
 });
 
+
 saveTasks();
 
 renderTasks();
+
+updateStats();
 
 });
 
@@ -246,6 +300,8 @@ function loadTasks() {
     }
 
     renderTasks();
+
+    updateStats();
 
 }
 
