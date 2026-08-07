@@ -89,11 +89,13 @@ taskForm.addEventListener("submit", function (event) {
 
     tasks.push(task);
 
-    renderTasks();
+saveTasks();
 
-    taskForm.reset();
+renderTasks();
 
-    closeModal();
+taskForm.reset();
+
+closeModal();
 
 });
 
@@ -190,7 +192,9 @@ taskList.addEventListener("change", function (event) {
 
     task.completed = event.target.checked;
 
-    renderTasks();
+saveTasks();
+
+renderTasks();
 
 });
 
@@ -208,10 +212,41 @@ taskList.addEventListener("click", function (event) {
 
     const taskId = Number(taskCard.dataset.id);
 
-    tasks = tasks.filter(function (task) {
-        return task.id !== taskId;
-    });
+   tasks = tasks.filter(function (task) {
+    return task.id !== taskId;
+});
+
+saveTasks();
+
+renderTasks();
+
+});
+
+// =================================
+// SAVE TASKS
+// =================================
+
+function saveTasks() {
+
+    localStorage.setItem("kansanTasks", JSON.stringify(tasks));
+
+}
+// =================================
+// LOAD TASKS
+// =================================
+
+function loadTasks() {
+
+    const savedTasks = localStorage.getItem("kansanTasks");
+
+    if (savedTasks) {
+
+        tasks = JSON.parse(savedTasks);
+
+    }
 
     renderTasks();
 
-});
+}
+
+loadTasks();
