@@ -62,6 +62,8 @@ const progressMessage = document.querySelector(".progress-message");
 
 const todayTaskList = document.querySelector(".today-task-list");
 
+const upcomingTaskList = document.querySelector(".upcoming-task-list");
+
 let currentFilter = "all";
 let currentView = "dashboard";
 
@@ -257,6 +259,108 @@ function updateTodayTasks() {
             `+ ${remaining} more task${remaining === 1 ? "" : "s"}`;
 
         todayTaskList.appendChild(moreTasks);
+
+    }
+
+}
+
+// =================================
+// UPDATE UPCOMING TASKS
+// =================================
+
+function updateUpcomingTasks() {
+
+    const today = getTodayDate();
+
+    const upcomingTasks = tasks
+        .filter(function (task) {
+
+            return (
+                task.dueDate &&
+                task.dueDate > today &&
+                !task.completed
+            );
+
+        })
+        .sort(function (a, b) {
+
+            return a.dueDate.localeCompare(b.dueDate);
+
+        });
+
+
+    upcomingTaskList.innerHTML = "";
+
+
+    if (upcomingTasks.length === 0) {
+
+        upcomingTaskList.innerHTML = `
+            <p class="dashboard-empty">
+                No upcoming tasks.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    const visibleTasks = upcomingTasks.slice(0, 5);
+
+
+    visibleTasks.forEach(function (task) {
+
+        const taskItem = document.createElement("div");
+
+        taskItem.classList.add("dashboard-task");
+
+
+        taskItem.innerHTML = `
+
+            <div class="dashboard-task-check">
+
+                <input
+                    type="checkbox"
+                    disabled
+                >
+
+            </div>
+
+            <div class="dashboard-task-info">
+
+                <h3>
+                    ${task.title}
+                </h3>
+
+                <span>
+                    ${formatDate(task.dueDate)}
+                </span>
+
+            </div>
+
+            <span class="priority ${task.priority}">
+                ${task.priority}
+            </span>
+
+        `;
+
+
+        upcomingTaskList.appendChild(taskItem);
+
+    });
+
+
+    if (upcomingTasks.length > 5) {
+
+        const remaining = upcomingTasks.length - 5;
+
+        const moreTasks = document.createElement("p");
+
+        moreTasks.classList.add("dashboard-more");
+
+        moreTasks.textContent =
+            `+ ${remaining} more task${remaining === 1 ? "" : "s"}`;
+
+        upcomingTaskList.appendChild(moreTasks);
 
     }
 
@@ -517,6 +621,7 @@ taskForm.addEventListener("submit", function (event) {
     updateProgress();
 
     updateTodayTasks();
+    updateUpcomingTasks();
 
     taskForm.reset();
 
@@ -728,6 +833,8 @@ updateProgress();
 
 updateTodayTasks();
 
+updateUpcomingTasks();
+
 });
 
 // =================================
@@ -757,6 +864,8 @@ updateStats();
 
 updateProgress();
 updateTodayTasks();
+
+updateUpcomingTasks();
 
 });
 
@@ -793,6 +902,7 @@ function loadTasks() {
 updateProgress();
 
 updateTodayTasks();
+updateUpcomingTasks();
 
 }
 

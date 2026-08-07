@@ -1223,3 +1223,18 @@ a {
 
     padding-top: 8px;
 }
+
+/* ================================
+   17. UPCOMING TASKS
+================================ */
+
+.upcoming-card {
+    margin-bottom: 45px;
+}
+
+.upcoming-task-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+}
