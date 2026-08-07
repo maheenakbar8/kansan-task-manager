@@ -817,3 +817,27 @@ a {
 .task-card.completed .task-info p {
     text-decoration: line-through;
 }
+
+/* ================================
+   13. EMPTY STATE
+================================ */
+
+.empty-state {
+    text-align: center;
+
+    padding: 50px 20px;
+
+    color: #9ca3af;
+}
+
+.empty-state h3 {
+    color: #4b5563;
+
+    font-size: 16px;
+
+    margin-bottom: 6px;
+}
+
+.empty-state p {
+    font-size: 13px;
+}

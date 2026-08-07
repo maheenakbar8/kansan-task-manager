@@ -3,6 +3,7 @@
 // =================================
 
 let tasks = [];
+
 // =================================
 // DOM ELEMENTS
 // =================================
@@ -35,6 +36,12 @@ const completedTasksElement = document.querySelector("#completed-tasks");
 const activeTasksElement = document.querySelector("#active-tasks");
 
 const overdueTasksElement = document.querySelector("#overdue-tasks");
+const searchInput = document.querySelector("#search-input");
+
+const filterButtons = document.querySelectorAll(".filter-button");
+
+
+let currentFilter = "all";
 
 // =================================
 // UPDATE STATISTICS
@@ -108,6 +115,12 @@ closeModalButton.addEventListener("click", closeModal);
 
 cancelTaskButton.addEventListener("click", closeModal)
 
+searchInput.addEventListener("input", function () {
+
+    renderTasks();
+
+});
+
 // =================================
 // CREATE TASK
 // =================================
@@ -154,7 +167,29 @@ function renderTasks() {
 
     taskList.innerHTML = "";
 
-    tasks.forEach(function (task) {
+
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+
+    const filteredTasks = tasks.filter(function (task) {
+
+        const matchesSearch =
+            task.title.toLowerCase().includes(searchTerm) ||
+            task.description.toLowerCase().includes(searchTerm);
+
+
+        const matchesFilter =
+            currentFilter === "all" ||
+            (currentFilter === "active" && !task.completed) ||
+            (currentFilter === "completed" && task.completed);
+
+
+        return matchesSearch && matchesFilter;
+
+    });
+
+
+    filteredTasks.forEach(function (task) {
 
        const taskCard = document.createElement("article");
 
@@ -217,6 +252,17 @@ taskCard.dataset.id = task.id;
         taskList.appendChild(taskCard);
 
     });
+
+    if (filteredTasks.length === 0) {
+
+    taskList.innerHTML = `
+        <div class="empty-state">
+            <h3>No tasks found</h3>
+            <p>Try changing your search or filter.</p>
+        </div>
+    `;
+
+}
 
 }
 // =================================
@@ -306,3 +352,28 @@ function loadTasks() {
 }
 
 loadTasks();
+
+filterButtons.forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+        filterButtons.forEach(function (btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+
+        button.classList.add("active");
+
+
+        currentFilter = button.textContent
+            .toLowerCase()
+            .trim();
+
+
+        renderTasks();
+
+    });
+
+});
