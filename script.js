@@ -107,18 +107,25 @@ function renderTasks() {
 
     tasks.forEach(function (task) {
 
-        const taskCard = document.createElement("article");
+       const taskCard = document.createElement("article");
 
-        taskCard.classList.add("task-card");
+taskCard.classList.add("task-card");
+
+if (task.completed) {
+    taskCard.classList.add("completed");
+}
+
+taskCard.dataset.id = task.id;
 
         taskCard.innerHTML = `
 
             <div class="task-checkbox">
 
                 <input
-                    type="checkbox"
-                    ${task.completed ? "checked" : ""}
-                >
+    type="checkbox"
+    class="task-complete-checkbox"
+    ${task.completed ? "checked" : ""}
+>
 
             </div>
 
@@ -150,11 +157,11 @@ function renderTasks() {
 
 
             <button
-                class="task-menu"
-                aria-label="Task options"
-            >
-                ⋮
-            </button>
+    class="task-menu delete-task-button"
+    aria-label="Delete task"
+>
+    ×
+</button>
 
         `;
 
@@ -163,3 +170,48 @@ function renderTasks() {
     });
 
 }
+// =================================
+// COMPLETE TASK
+// =================================
+
+taskList.addEventListener("change", function (event) {
+
+    if (!event.target.classList.contains("task-complete-checkbox")) {
+        return;
+    }
+
+    const taskCard = event.target.closest(".task-card");
+
+    const taskId = Number(taskCard.dataset.id);
+
+    const task = tasks.find(function (task) {
+        return task.id === taskId;
+    });
+
+    task.completed = event.target.checked;
+
+    renderTasks();
+
+});
+
+// =================================
+// DELETE TASK
+// =================================
+
+taskList.addEventListener("click", function (event) {
+
+    if (!event.target.classList.contains("delete-task-button")) {
+        return;
+    }
+
+    const taskCard = event.target.closest(".task-card");
+
+    const taskId = Number(taskCard.dataset.id);
+
+    tasks = tasks.filter(function (task) {
+        return task.id !== taskId;
+    });
+
+    renderTasks();
+
+});
