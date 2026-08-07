@@ -60,6 +60,7 @@ const progressFill = document.querySelector(".progress-fill");
 
 const progressMessage = document.querySelector(".progress-message");
 
+const todayTaskList = document.querySelector(".today-task-list");
 
 let currentFilter = "all";
 let currentView = "dashboard";
@@ -80,7 +81,7 @@ function updateStats() {
         return !task.completed;
     }).length;
 
-    const today = new Date().toISOString().split("T")[0];
+    const today = getTodayDate();
 
     const overdueTasks = tasks.filter(function (task) {
 
@@ -163,6 +164,99 @@ function updateProgress() {
 
         progressMessage.textContent =
             "Start checking off some tasks!";
+
+    }
+
+}
+
+// =================================
+// UPDATE TODAY'S TASKS
+// =================================
+
+function updateTodayTasks() {
+
+    const today = getTodayDate();
+
+    const todayTasks = tasks.filter(function (task) {
+
+        return task.dueDate === today;
+
+    });
+
+
+    todayTaskList.innerHTML = "";
+
+
+    if (todayTasks.length === 0) {
+
+        todayTaskList.innerHTML = `
+            <p class="dashboard-empty">
+                No tasks due today.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    const visibleTasks = todayTasks.slice(0, 4);
+
+
+    visibleTasks.forEach(function (task) {
+
+        const taskItem = document.createElement("div");
+
+        taskItem.classList.add("dashboard-task");
+
+
+        taskItem.innerHTML = `
+
+            <div class="dashboard-task-check">
+
+                <input
+                    type="checkbox"
+                    ${task.completed ? "checked" : ""}
+                    disabled
+                >
+
+            </div>
+
+            <div class="dashboard-task-info">
+
+                <h3 class="${task.completed ? "completed" : ""}">
+                    ${task.title}
+                </h3>
+
+                <span>
+                    ${formatDate(task.dueDate)}
+                </span>
+
+            </div>
+
+            <span class="priority ${task.priority}">
+                ${task.priority}
+            </span>
+
+        `;
+
+
+        todayTaskList.appendChild(taskItem);
+
+    });
+
+
+    if (todayTasks.length > 4) {
+
+        const remaining = todayTasks.length - 4;
+
+        const moreTasks = document.createElement("p");
+
+        moreTasks.classList.add("dashboard-more");
+
+        moreTasks.textContent =
+            `+ ${remaining} more task${remaining === 1 ? "" : "s"}`;
+
+        todayTaskList.appendChild(moreTasks);
 
     }
 
@@ -422,6 +516,8 @@ taskForm.addEventListener("submit", function (event) {
 
     updateProgress();
 
+    updateTodayTasks();
+
     taskForm.reset();
 
     closeModal();
@@ -630,6 +726,8 @@ updateStats();
 
 updateProgress();
 
+updateTodayTasks();
+
 });
 
 // =================================
@@ -658,6 +756,7 @@ renderTasks();
 updateStats();
 
 updateProgress();
+updateTodayTasks();
 
 });
 
@@ -692,6 +791,8 @@ function loadTasks() {
 
 
 updateProgress();
+
+updateTodayTasks();
 
 }
 
@@ -758,4 +859,17 @@ function formatDate(dateString) {
         year: "numeric"
     });
 
+}
+
+function getTodayDate() {
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+
+    const day = String(today.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
 }

@@ -1147,3 +1147,79 @@ a {
     }
 
 }
+
+/* ================================
+   16. DASHBOARD TASKS
+================================ */
+
+.dashboard-task {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.dashboard-task:last-child {
+    border-bottom: none;
+}
+
+
+.dashboard-task-check {
+    flex-shrink: 0;
+}
+
+.dashboard-task-check input {
+    width: 16px;
+    height: 16px;
+}
+
+
+.dashboard-task-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.dashboard-task-info h3 {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 3px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dashboard-task-info h3.completed {
+    text-decoration: line-through;
+
+    color: #9ca3af;
+}
+
+.dashboard-task-info span {
+    font-size: 11px;
+
+    color: #9ca3af;
+}
+
+
+.dashboard-task .priority {
+    flex-shrink: 0;
+}
+
+
+.dashboard-more {
+    font-size: 12px;
+
+    color: #5b5bd6;
+
+    font-weight: 600;
+
+    padding-top: 8px;
+}
