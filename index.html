@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kansan — Task Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h1>Kansan</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    Dashboard
+                </a>
+
+                <a href="#" class="nav-item">
+                    Tasks
+                </a>
+
+                <a href="#" class="nav-item">
+                    Today
+                </a>
+
+                <a href="#" class="nav-item">
+                    Upcoming
+                </a>
+            </nav>
+
+            <div class="categories">
+
+                <h2>Categories</h2>
+
+                <a href="#" class="category-item">
+                    Work
+                </a>
+
+                <a href="#" class="category-item">
+                    Personal
+                </a>
+
+                <a href="#" class="category-item">
+                    Projects
+                </a>
+
+                <a href="#" class="category-item">
+                    Other
+                </a>
+
+            </div>
+
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-item">
+                    Settings
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Header -->
+            <header class="top-bar">
+
+                <div>
+                    <p class="page-label">Dashboard</p>
+                    <h2>Good morning 👋</h2>
+                    <p class="subtitle">
+                        Here's what's happening today.
+                    </p>
+                </div>
+
+                <div class="top-actions">
+                    <button class="icon-button" aria-label="Search">
+                        🔍
+                    </button>
+
+                    <button class="icon-button" aria-label="Notifications">
+                        🔔
+                    </button>
+
+                    <button class="profile-button">
+                        M
+                    </button>
+                </div>
+
+            </header>
+
+
+            <!-- Statistics -->
+            <section class="stats">
+
+                <div class="stat-card">
+                    <p>Total Tasks</p>
+                    <h3>12</h3>
+                </div>
+
+                <div class="stat-card">
+                    <p>Completed</p>
+                    <h3>5</h3>
+                </div>
+
+                <div class="stat-card">
+                    <p>Active</p>
+                    <h3>7</h3>
+                </div>
+
+                <div class="stat-card">
+                    <p>Overdue</p>
+                    <h3>2</h3>
+                </div>
+
+            </section>
+
+
+            <!-- Tasks Section -->
+            <section class="tasks-section">
+
+                <div class="tasks-header">
+
+                    <div>
+                        <h2>My Tasks</h2>
+                        <p>Stay organized and get things done.</p>
+                    </div>
+
+                    <button class="add-task-button">
+                        + Add Task
+                    </button>
+
+                </div>
+
+
+                <!-- Search + Filters -->
+                <div class="task-controls">
+
+                    <div class="search-box">
+                        <input
+                            type="text"
+                            id="search-input"
+                            placeholder="Search tasks..."
+                        >
+                    </div>
+
+                    <div class="filters">
+
+                        <button class="filter-button active">
+                            All
+                        </button>
+
+                        <button class="filter-button">
+                            Active
+                        </button>
+
+                        <button class="filter-button">
+                            Completed
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Task List -->
+                <div class="task-list">
+
+                    <!-- Temporary example task -->
+                    <article class="task-card">
+
+                        <div class="task-checkbox">
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="task-info">
+
+                            <h3>Finish project proposal</h3>
+
+                            <p>
+                                Complete the proposal and prepare it for review.
+                            </p>
+
+                            <div class="task-meta">
+
+                                <span class="task-category">
+                                    Work
+                                </span>
+
+                                <span class="task-due-date">
+                                    Due today
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <span class="priority high">
+                            High
+                        </span>
+
+                        <button class="task-menu" aria-label="Task options">
+                            ⋮
+                        </button>
+
+                    </article>
+
+
+                    <article class="task-card">
+
+                        <div class="task-checkbox">
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="task-info">
+
+                            <h3>Buy groceries</h3>
+
+                            <p>
+                                Pick up groceries for the week.
+                            </p>
+
+                            <div class="task-meta">
+
+                                <span class="task-category">
+                                    Personal
+                                </span>
+
+                                <span class="task-due-date">
+                                    Due tomorrow
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <span class="priority low">
+                            Low
+                        </span>
+
+                        <button class="task-menu" aria-label="Task options">
+                            ⋮
+                        </button>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
