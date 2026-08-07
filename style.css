@@ -841,3 +841,101 @@ a {
 .empty-state p {
     font-size: 13px;
 }
+
+/* ================================
+   14. TASK ACTIONS
+================================ */
+
+.task-actions {
+    position: relative;
+}
+
+
+.task-menu {
+    border: none;
+    background: transparent;
+
+    color: #9ca3af;
+
+    font-size: 20px;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s ease;
+}
+
+.task-menu:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+
+/* Dropdown */
+
+.task-dropdown {
+    position: absolute;
+
+    top: 38px;
+    right: 0;
+
+    width: 120px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 8px;
+
+    padding: 5px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+    display: none;
+
+    z-index: 10;
+}
+
+
+.task-actions.open .task-dropdown {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.task-dropdown button {
+    border: none;
+
+    background: transparent;
+
+    text-align: left;
+
+    padding: 9px 10px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    color: #4b5563;
+}
+
+
+.task-dropdown button:hover {
+    background-color: #f3f4f6;
+}
+
+
+.task-dropdown .delete-task-button {
+    color: #dc2626;
+}
+
+.task-dropdown .delete-task-button:hover {
+    background-color: #fef2f2;
+}

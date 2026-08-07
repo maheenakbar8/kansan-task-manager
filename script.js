@@ -3,6 +3,7 @@
 // =================================
 
 let tasks = [];
+let editingTaskId = null;
 
 // =================================
 // DOM ELEMENTS
@@ -39,6 +40,9 @@ const overdueTasksElement = document.querySelector("#overdue-tasks");
 const searchInput = document.querySelector("#search-input");
 
 const filterButtons = document.querySelectorAll(".filter-button");
+const modalTitle = document.querySelector("#modal-title");
+
+const submitTaskButton = document.querySelector("#submit-task-button");
 
 
 let currentFilter = "all";
@@ -102,6 +106,43 @@ function closeModal() {
 
     taskModal.classList.remove("show");
 
+    taskForm.reset();
+
+    editingTaskId = null;
+
+    modalTitle.textContent = "Add a new task";
+
+    submitTaskButton.textContent = "Create Task";
+
+}
+
+
+// =================================
+// OPEN EDIT MODAL
+// =================================
+
+function openEditModal(task) {
+
+    editingTaskId = task.id;
+
+    modalTitle.textContent = "Edit task";
+
+    submitTaskButton.textContent = "Save Changes";
+
+
+    taskTitleInput.value = task.title;
+
+    taskDescriptionInput.value = task.description;
+
+    taskPriorityInput.value = task.priority;
+
+    taskCategoryInput.value = task.category;
+
+    taskDueDateInput.value = task.dueDate;
+
+
+    taskModal.classList.add("show");
+
 }
 
 
@@ -121,6 +162,42 @@ searchInput.addEventListener("input", function () {
 
 });
 
+taskList.addEventListener("click", function (event) {
+
+    if (!event.target.classList.contains("edit-task-button")) {
+        return;
+    }
+
+    const taskCard = event.target.closest(".task-card");
+
+    const taskId = Number(taskCard.dataset.id);
+
+    const task = tasks.find(function (task) {
+        return task.id === taskId;
+    });
+
+    openEditModal(task);
+
+});
+
+// =================================
+// TASK MENU
+// =================================
+
+taskList.addEventListener("click", function (event) {
+
+    const menuButton = event.target.closest(".task-menu");
+
+    if (!menuButton) {
+        return;
+    }
+
+    const taskActions = menuButton.closest(".task-actions");
+
+    taskActions.classList.toggle("open");
+
+});
+
 // =================================
 // CREATE TASK
 // =================================
@@ -129,33 +206,77 @@ taskForm.addEventListener("submit", function (event) {
 
     event.preventDefault();
 
-    const task = {
 
-        id: Date.now(),
+    // ================================
+    // EDIT EXISTING TASK
+    // ================================
 
-        title: taskTitleInput.value.trim(),
+    if (editingTaskId !== null) {
 
-        description: taskDescriptionInput.value.trim(),
-
-        priority: taskPriorityInput.value,
-
-        category: taskCategoryInput.value,
-
-        dueDate: taskDueDateInput.value,
-
-        completed: false
-
-    };
+        const task = tasks.find(function (task) {
+            return task.id === editingTaskId;
+        });
 
 
+        task.title = taskTitleInput.value.trim();
 
-tasks.push(task);
+        task.description = taskDescriptionInput.value.trim();
 
-saveTasks();
+        task.priority = taskPriorityInput.value;
 
-renderTasks();
+        task.category = taskCategoryInput.value;
 
-updateStats();
+        task.dueDate = taskDueDateInput.value;
+
+
+        editingTaskId = null;
+
+    }
+
+
+    // ================================
+    // CREATE NEW TASK
+    // ================================
+
+    else {
+
+        const task = {
+
+            id: Date.now(),
+
+            title: taskTitleInput.value.trim(),
+
+            description: taskDescriptionInput.value.trim(),
+
+            priority: taskPriorityInput.value,
+
+            category: taskCategoryInput.value,
+
+            dueDate: taskDueDateInput.value,
+
+            completed: false
+
+        };
+
+
+        tasks.push(task);
+
+    }
+
+
+    saveTasks();
+
+    renderTasks();
+
+    updateStats();
+
+    taskForm.reset();
+
+    closeModal();
+
+    modalTitle.textContent = "Add a new task";
+
+    submitTaskButton.textContent = "Create Task";
 
 });
 
@@ -239,13 +360,28 @@ taskCard.dataset.id = task.id;
                 ${task.priority}
             </span>
 
+<div class="task-actions">
 
-            <button
-    class="task-menu delete-task-button"
-    aria-label="Delete task"
->
-    ×
-</button>
+    <button
+        class="task-menu"
+        aria-label="Task options"
+    >
+        ⋮
+    </button>
+
+    <div class="task-dropdown">
+
+        <button class="edit-task-button">
+            Edit
+        </button>
+
+        <button class="delete-task-button">
+            Delete
+        </button>
+
+    </div>
+
+</div>
 
         `;
 
