@@ -44,6 +44,8 @@ const modalTitle = document.querySelector("#modal-title");
 
 const submitTaskButton = document.querySelector("#submit-task-button");
 
+const taskSummary = document.querySelector("#task-summary");
+
 
 let currentFilter = "all";
 
@@ -309,8 +311,33 @@ function renderTasks() {
 
     });
 
+    if (searchTerm || currentFilter !== "all") {
+
+    if (filteredTasks.length === 1) {
+        taskSummary.textContent = "1 task found";
+    } else {
+        taskSummary.textContent = `${filteredTasks.length} tasks found`;
+    }
+
+} else {
+
+    if (filteredTasks.length === 1) {
+        taskSummary.textContent = "1 task";
+    } else {
+        taskSummary.textContent = `${filteredTasks.length} tasks`;
+    }
+
+}
+
 
     filteredTasks.forEach(function (task) {
+
+        const today = new Date().toISOString().split("T")[0];
+
+    const isOverdue =
+        task.dueDate &&
+        task.dueDate < today &&
+        !task.completed;
 
        const taskCard = document.createElement("article");
 
@@ -347,9 +374,10 @@ taskCard.dataset.id = task.id;
                         ${task.category}
                     </span>
 
-                    <span class="task-due-date">
-                        ${task.dueDate || "No due date"}
-                    </span>
+                    <span class="task-due-date ${isOverdue ? "overdue" : ""}">
+    ${isOverdue ? "Overdue · " : ""}
+    ${formatDate(task.dueDate)}
+</span>
 
                 </div>
 
@@ -421,7 +449,7 @@ taskList.addEventListener("change", function (event) {
 
     task.completed = event.target.checked;
 
-task.completed = event.target.checked;
+
 
 saveTasks();
 
@@ -513,3 +541,41 @@ filterButtons.forEach(function (button) {
     });
 
 });
+
+// =================================
+// FORMAT DATE
+// =================================
+
+function formatDate(dateString) {
+
+    if (!dateString) {
+        return "No due date";
+    }
+
+    const date = new Date(dateString + "T00:00:00");
+
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+    const tomorrow = new Date(today);
+
+    tomorrow.setDate(today.getDate() + 1);
+
+
+    if (date.getTime() === today.getTime()) {
+        return "Today";
+    }
+
+    if (date.getTime() === tomorrow.getTime()) {
+        return "Tomorrow";
+    }
+
+
+    return date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+    });
+
+}
