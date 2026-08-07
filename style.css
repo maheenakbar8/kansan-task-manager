@@ -1238,3 +1238,25 @@ a {
 
     gap: 0;
 }
+
+/* ================================
+   18. PAGE VIEWS
+================================ */
+
+.dashboard-view {
+    display: block;
+}
+
+.tasks-section {
+    display: none;
+}
+
+.dashboard-view.active-view {
+    display: block;
+}
+
+.tasks-section.active-view {
+    display: block;
+}
+
+

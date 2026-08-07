@@ -20,21 +20,21 @@
                 <h1>Kansan</h1>
             </div>
 
-            <nav class="sidebar-nav">
+           <nav class="sidebar-nav">
 
-    <a href="#" class="nav-item active" id="dashboard-link">
+    <a href="#" class="nav-item active" data-page="dashboard">
         Dashboard
     </a>
 
-    <a href="#" class="nav-item" id="tasks-link">
+    <a href="#" class="nav-item" data-page="tasks">
         Tasks
     </a>
 
-    <a href="#" class="nav-item" id="today-link">
+    <a href="#" class="nav-item" data-page="today">
         Today
     </a>
 
-    <a href="#" class="nav-item" id="upcoming-link">
+    <a href="#" class="nav-item" data-page="upcoming">
         Upcoming
     </a>
 
@@ -44,21 +44,21 @@
 
                 <h2>Categories</h2>
 
-                <a href="#" class="category-item">
-                    Work
-                </a>
+               <a href="#" class="category-item" data-category="work">
+    Work
+</a>
 
-                <a href="#" class="category-item">
-                    Personal
-                </a>
+<a href="#" class="category-item" data-category="personal">
+    Personal
+</a>
 
-                <a href="#" class="category-item">
-                    Projects
-                </a>
+<a href="#" class="category-item" data-category="projects">
+    Projects
+</a>
 
-                <a href="#" class="category-item">
-                    Other
-                </a>
+<a href="#" class="category-item" data-category="other">
+    Other
+</a>
 
             </div>
 
@@ -74,6 +74,8 @@
         <!-- Main Content -->
         <main class="main-content">
 
+            
+            <div class="dashboard-view" id="dashboard-view">
             <!-- Top Header -->
             <header class="top-bar">
 
@@ -101,122 +103,131 @@
 
             </header>
 
+           
 
-            <!-- Statistics -->
-            <section class="stats">
 
-    <div class="stat-card">
-        <p>Total Tasks</p>
-        <h3 id="total-tasks">0</h3>
-    </div>
+           <!-- Dashboard View -->
+<div class="dashboard-view">
 
-    <div class="stat-card">
-        <p>Completed</p>
-        <h3 id="completed-tasks">0</h3>
-    </div>
+    <!-- Statistics -->
+    <section class="stats">
 
-    <div class="stat-card">
-        <p>Active</p>
-        <h3 id="active-tasks">0</h3>
-    </div>
+        <div class="stat-card">
+            <p>Total Tasks</p>
+            <h3 id="total-tasks">0</h3>
+        </div>
 
-    <div class="stat-card">
-        <p>Overdue</p>
-        <h3 id="overdue-tasks">0</h3>
-    </div>
+        <div class="stat-card">
+            <p>Completed</p>
+            <h3 id="completed-tasks">0</h3>
+        </div>
 
-</section>
+        <div class="stat-card">
+            <p>Active</p>
+            <h3 id="active-tasks">0</h3>
+        </div>
 
-<!-- Dashboard Overview -->
-<section class="dashboard-overview">
+        <div class="stat-card">
+            <p>Overdue</p>
+            <h3 id="overdue-tasks">0</h3>
+        </div>
 
-    <!-- Today's Tasks -->
-    <div class="dashboard-card today-card">
+    </section>
+
+
+    <!-- Dashboard Overview -->
+    <section class="dashboard-overview">
+
+        <!-- Today's Tasks -->
+        <div class="dashboard-card today-card">
+
+            <div class="dashboard-card-header">
+                <div>
+                    <h2>Today's Tasks</h2>
+                    <p>What needs your attention today?</p>
+                </div>
+
+                <a href="#" class="view-all-link">
+                    View all →
+                </a>
+            </div>
+
+            <div class="today-task-list">
+
+                <p class="dashboard-empty">
+                    No tasks due today.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Progress -->
+        <div class="dashboard-card progress-card">
+
+            <div class="dashboard-card-header">
+                <div>
+                    <h2>Your Progress</h2>
+                    <p>Keep up the momentum.</p>
+                </div>
+            </div>
+
+            <div class="progress-content">
+
+                <div class="progress-number">
+                    <strong>0%</strong>
+                    <span>completed</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <p class="progress-message">
+                    Start checking off some tasks!
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Upcoming Tasks -->
+    <section class="dashboard-card upcoming-card">
 
         <div class="dashboard-card-header">
+
             <div>
-                <h2>Today's Tasks</h2>
-                <p>What needs your attention today?</p>
+                <h2>Upcoming Tasks</h2>
+                <p>What's coming up next?</p>
             </div>
 
             <a href="#" class="view-all-link">
                 View all →
             </a>
+
         </div>
 
-        <div class="today-task-list">
+        <div class="upcoming-task-list">
 
             <p class="dashboard-empty">
-                No tasks due today.
+                No upcoming tasks.
             </p>
 
         </div>
 
-    </div>
+    </section>
 
-
-    <!-- Progress -->
-    <div class="dashboard-card progress-card">
-
-        <div class="dashboard-card-header">
-            <div>
-                <h2>Your Progress</h2>
-                <p>Keep up the momentum.</p>
-            </div>
-        </div>
-
-        <div class="progress-content">
-
-            <div class="progress-number">
-                <strong>0%</strong>
-                <span>completed</span>
-            </div>
-
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-
-            <p class="progress-message">
-                Start checking off some tasks!
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- Upcoming Tasks -->
-<section class="dashboard-card upcoming-card">
-
-    <div class="dashboard-card-header">
-
-        <div>
-            <h2>Upcoming Tasks</h2>
-            <p>What's coming up next?</p>
-        </div>
-
-        <a href="#" class="view-all-link">
-            View all →
-        </a>
-
-    </div>
-
-    <div class="upcoming-task-list">
-
-        <p class="dashboard-empty">
-            No upcoming tasks.
-        </p>
-
-    </div>
-
-</section>
+</div>
 
 
 
 
             <!-- Tasks Section -->
-            <section class="tasks-section">
+            <section class="tasks-section" id="tasks-view">
 
                 <div class="tasks-header">
 
@@ -272,6 +283,8 @@
                 </div>
 
             </section>
+
+            
 
         </main>
 

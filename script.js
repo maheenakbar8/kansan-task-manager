@@ -46,13 +46,13 @@ const submitTaskButton = document.querySelector("#submit-task-button");
 
 const taskSummary = document.querySelector("#task-summary");
 
-const dashboardLink = document.querySelector("#dashboard-link");
+const dashboardLink = document.querySelector('[data-page="dashboard"]');
 
-const tasksLink = document.querySelector("#tasks-link");
+const tasksLink = document.querySelector('[data-page="tasks"]');
 
-const todayLink = document.querySelector("#today-link");
+const todayLink = document.querySelector('[data-page="today"]');
 
-const upcomingLink = document.querySelector("#upcoming-link");
+const upcomingLink = document.querySelector('[data-page="upcoming"]');
 
 const progressPercentage = document.querySelector(".progress-number strong");
 
@@ -63,6 +63,10 @@ const progressMessage = document.querySelector(".progress-message");
 const todayTaskList = document.querySelector(".today-task-list");
 
 const upcomingTaskList = document.querySelector(".upcoming-task-list");
+
+const navItems = document.querySelectorAll(".nav-item[data-page]");
+
+const categoryItems = document.querySelectorAll(".category-item");
 
 let currentFilter = "all";
 let currentView = "dashboard";
@@ -450,6 +454,23 @@ function setActiveNav(activeLink) {
 // EVENT LISTENERS
 // =================================
 
+
+addTaskButton.addEventListener("click", openModal);
+
+closeModalButton.addEventListener("click", closeModal);
+
+cancelTaskButton.addEventListener("click", closeModal)
+
+searchInput.addEventListener("input", function () {
+
+    renderTasks();
+
+});
+
+// =================================
+// SIDEBAR NAVIGATION
+// =================================
+
 dashboardLink.addEventListener("click", function (event) {
 
     event.preventDefault();
@@ -458,9 +479,12 @@ dashboardLink.addEventListener("click", function (event) {
 
     setActiveNav(dashboardLink);
 
+    taskList.closest(".tasks-section").classList.remove("active-view");
+
     renderTasks();
 
 });
+
 
 tasksLink.addEventListener("click", function (event) {
 
@@ -470,9 +494,12 @@ tasksLink.addEventListener("click", function (event) {
 
     setActiveNav(tasksLink);
 
+    taskList.closest(".tasks-section").classList.add("active-view");
+
     renderTasks();
 
 });
+
 
 todayLink.addEventListener("click", function (event) {
 
@@ -482,9 +509,12 @@ todayLink.addEventListener("click", function (event) {
 
     setActiveNav(todayLink);
 
+    taskList.closest(".tasks-section").classList.add("active-view");
+
     renderTasks();
 
 });
+
 
 upcomingLink.addEventListener("click", function (event) {
 
@@ -494,17 +524,7 @@ upcomingLink.addEventListener("click", function (event) {
 
     setActiveNav(upcomingLink);
 
-    renderTasks();
-
-});
-
-addTaskButton.addEventListener("click", openModal);
-
-closeModalButton.addEventListener("click", closeModal);
-
-cancelTaskButton.addEventListener("click", closeModal)
-
-searchInput.addEventListener("input", function () {
+    taskList.closest(".tasks-section").classList.add("active-view");
 
     renderTasks();
 
@@ -525,6 +545,40 @@ taskList.addEventListener("click", function (event) {
     });
 
     openEditModal(task);
+
+});
+
+
+
+// =================================
+// CATEGORY NAVIGATION
+// =================================
+
+categoryItems.forEach(function (item) {
+
+    item.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        navItems.forEach(function (navItem) {
+
+            navItem.classList.remove("active");
+
+        });
+
+        categoryItems.forEach(function (categoryItem) {
+
+            categoryItem.classList.remove("active");
+
+        });
+
+        item.classList.add("active");
+
+        const category = item.dataset.category;
+
+        console.log("Category:", category);
+
+    });
 
 });
 
