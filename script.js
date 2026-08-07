@@ -46,8 +46,17 @@ const submitTaskButton = document.querySelector("#submit-task-button");
 
 const taskSummary = document.querySelector("#task-summary");
 
+const dashboardLink = document.querySelector("#dashboard-link");
+
+const tasksLink = document.querySelector("#tasks-link");
+
+const todayLink = document.querySelector("#today-link");
+
+const upcomingLink = document.querySelector("#upcoming-link");
+
 
 let currentFilter = "all";
+let currentView = "dashboard";
 
 // =================================
 // UPDATE STATISTICS
@@ -147,10 +156,78 @@ function openEditModal(task) {
 
 }
 
+// =================================
+// SIDEBAR NAVIGATION
+// =================================
+
+function setActiveNav(activeLink) {
+
+    const navLinks = document.querySelectorAll(".sidebar-nav .nav-item");
+
+    navLinks.forEach(function (link) {
+
+        link.classList.remove("active");
+
+    });
+
+    activeLink.classList.add("active");
+
+}
+
+
+
 
 // =================================
 // EVENT LISTENERS
 // =================================
+
+dashboardLink.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    currentView = "dashboard";
+
+    setActiveNav(dashboardLink);
+
+    renderTasks();
+
+});
+
+tasksLink.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    currentView = "tasks";
+
+    setActiveNav(tasksLink);
+
+    renderTasks();
+
+});
+
+todayLink.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    currentView = "today";
+
+    setActiveNav(todayLink);
+
+    renderTasks();
+
+});
+
+upcomingLink.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    currentView = "upcoming";
+
+    setActiveNav(upcomingLink);
+
+    renderTasks();
+
+});
 
 addTaskButton.addEventListener("click", openModal);
 
@@ -294,22 +371,43 @@ function renderTasks() {
     const searchTerm = searchInput.value.toLowerCase().trim();
 
 
-    const filteredTasks = tasks.filter(function (task) {
+    const today = new Date().toISOString().split("T")[0];
 
-        const matchesSearch =
-            task.title.toLowerCase().includes(searchTerm) ||
-            task.description.toLowerCase().includes(searchTerm);
+const filteredTasks = tasks.filter(function (task) {
 
-
-        const matchesFilter =
-            currentFilter === "all" ||
-            (currentFilter === "active" && !task.completed) ||
-            (currentFilter === "completed" && task.completed);
+    const matchesSearch =
+        task.title.toLowerCase().includes(searchTerm) ||
+        task.description.toLowerCase().includes(searchTerm);
 
 
-        return matchesSearch && matchesFilter;
+    const matchesFilter =
+        currentFilter === "all" ||
+        (currentFilter === "active" && !task.completed) ||
+        (currentFilter === "completed" && task.completed);
 
-    });
+
+    let matchesView = true;
+
+
+    if (currentView === "today") {
+
+        matchesView = task.dueDate === today;
+
+    }
+
+
+    if (currentView === "upcoming") {
+
+        matchesView =
+            task.dueDate &&
+            task.dueDate > today;
+
+    }
+
+
+    return matchesSearch && matchesFilter && matchesView;
+
+});
 
     if (searchTerm || currentFilter !== "all") {
 
