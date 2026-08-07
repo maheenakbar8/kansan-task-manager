@@ -54,6 +54,12 @@ const todayLink = document.querySelector("#today-link");
 
 const upcomingLink = document.querySelector("#upcoming-link");
 
+const progressPercentage = document.querySelector(".progress-number strong");
+
+const progressFill = document.querySelector(".progress-fill");
+
+const progressMessage = document.querySelector(".progress-message");
+
 
 let currentFilter = "all";
 let currentView = "dashboard";
@@ -94,6 +100,71 @@ function updateStats() {
     activeTasksElement.textContent = activeTasks;
 
     overdueTasksElement.textContent = overdueTasks;
+
+}
+
+// =================================
+// UPDATE DASHBOARD PROGRESS
+// =================================
+
+function updateProgress() {
+
+    const totalTasks = tasks.length;
+
+    const completedTasks = tasks.filter(function (task) {
+        return task.completed;
+    }).length;
+
+
+    if (totalTasks === 0) {
+
+        progressPercentage.textContent = "0%";
+
+        progressFill.style.width = "0%";
+
+        progressMessage.textContent =
+            "Start checking off some tasks!";
+
+        return;
+    }
+
+
+    const percentage = Math.round(
+        (completedTasks / totalTasks) * 100
+    );
+
+
+    progressPercentage.textContent = `${percentage}%`;
+
+    progressFill.style.width = `${percentage}%`;
+
+
+    if (percentage === 100) {
+
+        progressMessage.textContent =
+            "Everything is done! 🎉";
+
+    } else if (percentage >= 75) {
+
+        progressMessage.textContent =
+            "Almost there! Keep going!";
+
+    } else if (percentage >= 50) {
+
+        progressMessage.textContent =
+            "Great progress! Keep it up!";
+
+    } else if (percentage > 0) {
+
+        progressMessage.textContent =
+            "Nice start! Keep going!";
+
+    } else {
+
+        progressMessage.textContent =
+            "Start checking off some tasks!";
+
+    }
 
 }
 
@@ -349,6 +420,8 @@ taskForm.addEventListener("submit", function (event) {
 
     updateStats();
 
+    updateProgress();
+
     taskForm.reset();
 
     closeModal();
@@ -555,6 +628,8 @@ renderTasks();
 
 updateStats();
 
+updateProgress();
+
 });
 
 // =================================
@@ -581,6 +656,8 @@ saveTasks();
 renderTasks();
 
 updateStats();
+
+updateProgress();
 
 });
 
@@ -610,6 +687,11 @@ function loadTasks() {
     renderTasks();
 
     updateStats();
+
+    renderTasks();
+
+
+updateProgress();
 
 }
 

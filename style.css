@@ -982,3 +982,168 @@ a {
 
     text-transform: capitalize;
 }
+
+/* ================================
+   15. DASHBOARD OVERVIEW
+================================ */
+
+.dashboard-overview {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+
+    margin-bottom: 45px;
+}
+
+
+.dashboard-card {
+    background-color: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    padding: 22px;
+}
+
+
+/* Dashboard card header */
+
+.dashboard-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 20px;
+}
+
+.dashboard-card-header h2 {
+    font-size: 16px;
+
+    margin-bottom: 5px;
+}
+
+.dashboard-card-header p {
+    font-size: 12px;
+
+    color: #6b7280;
+}
+
+
+/* View all */
+
+.view-all-link {
+    font-size: 12px;
+
+    color: #5b5bd6;
+
+    font-weight: 600;
+}
+
+.view-all-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Today's tasks */
+
+.today-task-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.dashboard-empty {
+    font-size: 13px;
+
+    color: #9ca3af;
+
+    padding: 18px 0;
+}
+
+
+/* Progress */
+
+.progress-content {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 8px 0 4px;
+}
+
+
+.progress-number {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.progress-number strong {
+    font-size: 36px;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+.progress-number span {
+    font-size: 12px;
+
+    color: #9ca3af;
+}
+
+
+/* Progress bar */
+
+.progress-bar {
+    width: 100%;
+
+    height: 8px;
+
+    background-color: #f3f4f6;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+
+    margin-bottom: 14px;
+}
+
+.progress-fill {
+    width: 0%;
+
+    height: 100%;
+
+    background-color: #5b5bd6;
+
+    border-radius: inherit;
+
+    transition: width 0.3s ease;
+}
+
+
+.progress-message {
+    font-size: 12px;
+
+    color: #6b7280;
+
+    text-align: center;
+}
+
+
+/* Dashboard responsive */
+
+@media (max-width: 900px) {
+
+    .dashboard-overview {
+        grid-template-columns: 1fr;
+    }
+
+}
