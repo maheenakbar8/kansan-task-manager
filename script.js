@@ -231,7 +231,9 @@ function updateTodayTasks() {
 
         const taskItem = document.createElement("div");
 
-        taskItem.classList.add("dashboard-task");
+taskItem.classList.add("dashboard-task");
+
+taskItem.dataset.id = task.id;
 
 
         taskItem.innerHTML = `
@@ -239,10 +241,10 @@ function updateTodayTasks() {
             <div class="dashboard-task-check">
 
                 <input
-                    type="checkbox"
-                    ${task.completed ? "checked" : ""}
-                    disabled
-                >
+    type="checkbox"
+    class="dashboard-task-checkbox"
+    ${task.completed ? "checked" : ""}
+>
 
             </div>
 
@@ -509,6 +511,25 @@ searchInput.addEventListener("input", function () {
 sortSelect.addEventListener("change", function () {
 
     renderTasks();
+
+});
+
+todayTaskList.addEventListener("change", function (event) {
+
+    if (!event.target.classList.contains("dashboard-task-checkbox")) {
+        return;
+    }
+
+    const taskItem = event.target.closest(".dashboard-task");
+
+    const taskId = Number(taskItem.dataset.id);
+
+    console.log("Dashboard task ID:", taskId);
+
+    toggleTaskCompletion(
+        taskId,
+        event.target.checked
+    );
 
 });
 
@@ -1000,9 +1021,38 @@ taskCard.dataset.id = task.id;
 }
 
 }
+
+
 // =================================
 // COMPLETE TASK
 // =================================
+
+function toggleTaskCompletion(taskId, completed) {
+
+    const task = tasks.find(function (task) {
+        return task.id === taskId;
+    });
+
+    if (!task) {
+        console.log("Task not found:", taskId);
+        return;
+    }
+
+    task.completed = completed;
+
+    saveTasks();
+
+    renderTasks();
+
+    updateStats();
+
+    updateProgress();
+
+    updateTodayTasks();
+
+    updateUpcomingTasks();
+
+}
 
 taskList.addEventListener("change", function (event) {
 
@@ -1014,28 +1064,12 @@ taskList.addEventListener("change", function (event) {
 
     const taskId = Number(taskCard.dataset.id);
 
-    const task = tasks.find(function (task) {
-        return task.id === taskId;
-    });
-
-    task.completed = event.target.checked;
-
-
-
-saveTasks();
-
-renderTasks();
-
-updateStats();
-
-updateProgress();
-
-updateTodayTasks();
-
-updateUpcomingTasks();
+    toggleTaskCompletion(
+        taskId,
+        event.target.checked
+    );
 
 });
-
 
 // =================================
 // DELETE TASK
