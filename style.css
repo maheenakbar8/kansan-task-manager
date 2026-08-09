@@ -10,7 +10,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f8;
+    background-color: #f4f3fb;
     color: #1f2937;
 }
 
@@ -2130,4 +2130,193 @@ body.soft-theme .setting-row select {
     color: #9ca3af;
     font-size: 13px;
     padding: 12px 0;
+}
+
+/* ================================
+   STAT CARD ACCENTS
+================================ */
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    background-color: #5b5bd6;
+}
+
+.stat-card:nth-child(2)::before {
+    background-color: #22c55e;
+}
+
+.stat-card:nth-child(3)::before {
+    background-color: #3b82f6;
+}
+
+.stat-card:nth-child(4)::before {
+    background-color: #ef4444;
+}
+
+/* ================================
+   TASK CARD POLISH
+================================ */
+
+.task-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.task-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 3px;
+
+    background-color: #e5e7eb;
+}
+
+.task-card:has(.priority.high)::before {
+    background-color: #ef4444;
+}
+
+.task-card:has(.priority.medium)::before {
+    background-color: #f59e0b;
+}
+
+.task-card:has(.priority.low)::before {
+    background-color: #9ca3af;
+}
+
+.task-card.completed::before {
+    background-color: #22c55e;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 18px rgba(31, 41, 55, 0.07);
+
+    border-color: #d8d8e2;
+}
+
+
+.task-card.completed::before {
+    background-color: #22c55e !important;
+}
+
+/* ================================
+   SEARCH & FILTER POLISH
+================================ */
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.search-box input:hover {
+    border-color: #d1d5db;
+}
+
+.search-box input:focus {
+    border-color: #5b5bd6;
+    box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.08);
+}
+
+.sort-select {
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.sort-select:hover {
+    border-color: #d1d5db;
+}
+
+.sort-select:focus {
+    border-color: #5b5bd6;
+    box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.08);
+}
+
+.filter-button {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.filter-button:hover {
+    color: #5b5bd6;
+}
+
+.filter-button.active {
+    box-shadow: 0 1px 3px rgba(91, 91, 214, 0.08);
+}
+
+/* ================================
+   MODAL POLISH
+================================ */
+
+.modal-overlay {
+    backdrop-filter: blur(3px);
+}
+
+.task-modal {
+    border: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+    letter-spacing: -0.4px;
+}
+
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+    border-color: #d1d5db;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #5b5bd6;
+    box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.08);
+}
+
+.cancel-button,
+.submit-button {
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.cancel-button:hover,
+.submit-button:hover {
+    transform: translateY(-1px);
+}
+
+.submit-button {
+    box-shadow: 0 2px 5px rgba(91, 91, 214, 0.2);
+}
+
+.submit-button:hover {
+    box-shadow: 0 4px 10px rgba(91, 91, 214, 0.25);
 }
