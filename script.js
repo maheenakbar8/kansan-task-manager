@@ -507,7 +507,7 @@ taskList.addEventListener("click", function (event) {
 // PAGE NAVIGATION
 // =================================
 
-navItems.forEach(function (item) {
+pageLinks.forEach(function (item) {
 
     item.addEventListener("click", function (event) {
 
@@ -518,18 +518,27 @@ navItems.forEach(function (item) {
         currentView = page;
         currentCategory = "all";
 
-        // Update active navigation item
+        // Update active sidebar navigation
         navItems.forEach(function (navItem) {
 
             navItem.classList.remove("active");
 
         });
 
-        item.classList.add("active");
+        const matchingNavItem = document.querySelector(
+            `.sidebar-nav .nav-item[data-page="${page}"]`
+        );
 
+        if (matchingNavItem) {
+            matchingNavItem.classList.add("active");
+        }
+
+        // Remove active category
         categoryItems.forEach(function (categoryItem) {
-    categoryItem.classList.remove("active");
-});
+
+            categoryItem.classList.remove("active");
+
+        });
 
 
         // =============================
