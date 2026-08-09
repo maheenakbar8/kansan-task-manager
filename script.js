@@ -333,10 +333,11 @@ function updateUpcomingTasks() {
 
 
     visibleTasks.forEach(function (task) {
+const taskItem = document.createElement("div");
 
-        const taskItem = document.createElement("div");
+taskItem.classList.add("dashboard-task");
 
-        taskItem.classList.add("dashboard-task");
+taskItem.dataset.id = task.id;
 
 
         taskItem.innerHTML = `
@@ -344,9 +345,9 @@ function updateUpcomingTasks() {
             <div class="dashboard-task-check">
 
                 <input
-                    type="checkbox"
-                    disabled
-                >
+    type="checkbox"
+    class="dashboard-upcoming-checkbox"
+>
 
             </div>
 
@@ -525,6 +526,23 @@ todayTaskList.addEventListener("change", function (event) {
     const taskId = Number(taskItem.dataset.id);
 
     console.log("Dashboard task ID:", taskId);
+
+    toggleTaskCompletion(
+        taskId,
+        event.target.checked
+    );
+
+});
+
+upcomingTaskList.addEventListener("change", function (event) {
+
+    if (!event.target.classList.contains("dashboard-upcoming-checkbox")) {
+        return;
+    }
+
+    const taskItem = event.target.closest(".dashboard-task");
+
+    const taskId = Number(taskItem.dataset.id);
 
     toggleTaskCompletion(
         taskId,
