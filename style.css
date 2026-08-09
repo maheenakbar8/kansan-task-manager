@@ -1562,3 +1562,34 @@ body:not(.tasks-page) .progress-fill {
 body:not(.tasks-page) .progress-message {
     color: #7b8190;
 }
+
+
+/* =================================
+   UPCOMING TASKS POLISH
+   ================================= */
+
+body:not(.tasks-page) .upcoming-card {
+    border-radius: 14px;
+    border: 1px solid #e7e7ee;
+    padding: 24px;
+
+    box-shadow: 0 2px 8px rgba(31, 41, 55, 0.025);
+}
+
+body:not(.tasks-page) .upcoming-task-list {
+    border-top: 1px solid #f1f1f5;
+    padding-top: 4px;
+}
+
+body:not(.tasks-page) .upcoming-card .dashboard-task {
+    padding: 13px 8px;
+    margin: 0 -8px;
+
+    border-radius: 7px;
+
+    transition: background-color 0.15s ease;
+}
+
+body:not(.tasks-page) .upcoming-card .dashboard-task:hover {
+    background-color: #fafaff;
+}
