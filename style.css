@@ -2046,3 +2046,88 @@ body.soft-theme .setting-row select {
     background-color: #faf9ff;
     border-color: #e4e1f2;
 }
+
+/* ================================
+   NOTIFICATIONS
+================================ */
+
+.top-actions {
+    position: relative;
+}
+
+.notification-panel {
+    position: absolute;
+    top: 70px;
+    right: 50px;
+
+    width: 320px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    padding: 16px;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+
+    display: none;
+
+    z-index: 100;
+}
+
+.notification-panel.show {
+    display: block;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+.notification-header h3 {
+    font-size: 15px;
+}
+
+.notification-header span {
+    background-color: #f0f0ff;
+    color: #5b5bd6;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    padding: 3px 7px;
+
+    border-radius: 999px;
+}
+
+.notification-item {
+    padding: 10px 0;
+
+    border-bottom: 1px solid #f3f4f6;
+
+    font-size: 13px;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item strong {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.notification-item span {
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+.notification-empty {
+    color: #9ca3af;
+    font-size: 13px;
+    padding: 12px 0;
+}

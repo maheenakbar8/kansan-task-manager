@@ -828,6 +828,7 @@ taskForm.addEventListener("submit", function (event) {
 
     updateTodayTasks();
     updateUpcomingTasks();
+    updateNotifications();
 
     taskForm.reset();
 
@@ -1096,6 +1097,7 @@ function toggleTaskCompletion(taskId, completed) {
     updateTodayTasks();
 
     updateUpcomingTasks();
+    updateNotifications();
 
 }
 
@@ -1160,6 +1162,7 @@ confirmDeleteButton.addEventListener("click", function () {
     updateTodayTasks();
 
     updateUpcomingTasks();
+    updateNotifications();
 
     closeDeleteModal();
 
@@ -1354,3 +1357,128 @@ const savedTheme =
     localStorage.getItem("kansanTheme") || "light";
 
 applyTheme(savedTheme);
+
+
+// =================================
+// NOTIFICATIONS
+// =================================
+
+const notificationButton =
+    document.querySelector("#notification-button");
+
+const notificationPanel =
+    document.querySelector("#notification-panel");
+
+const notificationList =
+    document.querySelector("#notification-list");
+
+const notificationCount =
+    document.querySelector("#notification-count");
+
+
+function updateNotifications() {
+
+    const today = getTodayDate();
+
+    const overdueTasks = tasks.filter(function (task) {
+
+        return (
+            task.dueDate &&
+            task.dueDate < today &&
+            !task.completed
+        );
+
+    });
+
+    const todayTasks = tasks.filter(function (task) {
+
+        return (
+            task.dueDate === today &&
+            !task.completed
+        );
+
+    });
+
+
+    const notifications = [];
+
+
+    overdueTasks.forEach(function (task) {
+
+        notifications.push({
+            title: "Task overdue",
+            text: task.title
+        });
+
+    });
+
+
+    todayTasks.forEach(function (task) {
+
+        notifications.push({
+            title: "Due today",
+            text: task.title
+        });
+
+    });
+
+
+    notificationList.innerHTML = "";
+
+    notificationCount.textContent =
+        notifications.length;
+
+
+    if (notifications.length === 0) {
+
+        notificationList.innerHTML = `
+            <p class="notification-empty">
+                You're all caught up! 🎉
+            </p>
+        `;
+
+        return;
+    }
+
+
+    notifications.slice(0, 5).forEach(function (notification) {
+
+        const item = document.createElement("div");
+
+        item.classList.add("notification-item");
+
+        item.innerHTML = `
+            <strong>${notification.title}</strong>
+            <span>${notification.text}</span>
+        `;
+
+        notificationList.appendChild(item);
+
+    });
+
+}
+
+
+notificationButton.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+    updateNotifications();
+
+    notificationPanel.classList.toggle("show");
+
+});
+
+
+document.addEventListener("click", function (event) {
+
+    if (
+        !event.target.closest("#notification-panel") &&
+        !event.target.closest("#notification-button")
+    ) {
+
+        notificationPanel.classList.remove("show");
+
+    }
+
+});
