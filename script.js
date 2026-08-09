@@ -74,24 +74,7 @@ let currentView = "dashboard";
 let currentCategory = "all";
 
 
-pageLinks.forEach(function (link) {
 
-    link.addEventListener("click", function (event) {
-
-        event.preventDefault();
-
-        const page = link.dataset.page;
-
-        currentView = page;
-        currentCategory = "all";
-
-        document.body.classList.add("tasks-page");
-
-        renderTasks();
-
-    });
-
-});
 
 // =================================
 // UPDATE STATISTICS
@@ -526,6 +509,7 @@ navItems.forEach(function (item) {
         const page = item.dataset.page;
 
         currentView = page;
+        currentCategory = "all";
 
         // Update active navigation item
         navItems.forEach(function (navItem) {
@@ -535,6 +519,10 @@ navItems.forEach(function (item) {
         });
 
         item.classList.add("active");
+
+        categoryItems.forEach(function (categoryItem) {
+    categoryItem.classList.remove("active");
+});
 
 
         // =============================
