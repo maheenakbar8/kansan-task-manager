@@ -65,12 +65,33 @@ const todayTaskList = document.querySelector(".today-task-list");
 const upcomingTaskList = document.querySelector(".upcoming-task-list");
 
 const navItems = document.querySelectorAll(".nav-item[data-page]");
+const pageLinks = document.querySelectorAll("[data-page]");
 
 const categoryItems = document.querySelectorAll(".category-item");
 
 let currentFilter = "all";
 let currentView = "dashboard";
 let currentCategory = "all";
+
+
+pageLinks.forEach(function (link) {
+
+    link.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        const page = link.dataset.page;
+
+        currentView = page;
+        currentCategory = "all";
+
+        document.body.classList.add("tasks-page");
+
+        renderTasks();
+
+    });
+
+});
 
 // =================================
 // UPDATE STATISTICS
@@ -558,24 +579,26 @@ categoryItems.forEach(function (item) {
 
         const category = item.dataset.category;
 
-currentView = "tasks";
-currentCategory = category;
+        currentCategory = category;
+        currentView = "tasks";
 
-        // Show Tasks page
-        document.body.classList.add("tasks-page");
-
-        // Update active sidebar item
+        // Remove active from normal navigation
         navItems.forEach(function (navItem) {
             navItem.classList.remove("active");
         });
 
+        // Remove active from all categories
         categoryItems.forEach(function (categoryItem) {
             categoryItem.classList.remove("active");
         });
 
+        // Activate selected category
         item.classList.add("active");
 
-        // Render tasks
+        // Show Tasks page
+        document.body.classList.add("tasks-page");
+
+        // Render filtered tasks
         renderTasks();
 
     });
@@ -753,7 +776,11 @@ console.log("Current view:", currentView);
 console.log("Current filter:", currentFilter);
 console.log("Filtered tasks:", filteredTasks.length);
 
-    if (searchTerm || currentFilter !== "all") {
+    if (
+    searchTerm ||
+    currentFilter !== "all" ||
+    currentCategory !== "all"
+) {
 
     if (filteredTasks.length === 1) {
         taskSummary.textContent = "1 task found";
