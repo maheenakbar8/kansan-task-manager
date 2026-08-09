@@ -483,7 +483,6 @@ sortSelect.addEventListener("change", function () {
 // =================================
 
 
-
 taskList.addEventListener("click", function (event) {
 
     if (!event.target.classList.contains("edit-task-button")) {
@@ -492,16 +491,19 @@ taskList.addEventListener("click", function (event) {
 
     const taskCard = event.target.closest(".task-card");
 
+    const taskActions = event.target.closest(".task-actions");
+
     const taskId = Number(taskCard.dataset.id);
 
     const task = tasks.find(function (task) {
         return task.id === taskId;
     });
 
+    taskActions.classList.remove("open");
+
     openEditModal(task);
 
 });
-
 
 // =================================
 // PAGE NAVIGATION
@@ -625,6 +627,28 @@ taskList.addEventListener("click", function (event) {
     const taskActions = menuButton.closest(".task-actions");
 
     taskActions.classList.toggle("open");
+
+});
+
+// =================================
+// CLOSE TASK MENU WHEN CLICKING OUTSIDE
+// =================================
+
+document.addEventListener("click", function (event) {
+
+    if (
+        !event.target.closest(".task-actions")
+    ) {
+
+        document
+            .querySelectorAll(".task-actions.open")
+            .forEach(function (menu) {
+
+                menu.classList.remove("open");
+
+            });
+
+    }
 
 });
 
@@ -988,13 +1012,17 @@ taskList.addEventListener("click", function (event) {
         return;
     }
 
-    const taskCard = event.target.closest(".task-card");
+   const taskCard = event.target.closest(".task-card");
 
-    const taskId = Number(taskCard.dataset.id);
+const taskActions = event.target.closest(".task-actions");
+
+const taskId = Number(taskCard.dataset.id);
 
    tasks = tasks.filter(function (task) {
     return task.id !== taskId;
 });
+
+taskActions.classList.remove("open");
 
 
 saveTasks();
