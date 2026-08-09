@@ -1593,3 +1593,178 @@ body:not(.tasks-page) .upcoming-card .dashboard-task {
 body:not(.tasks-page) .upcoming-card .dashboard-task:hover {
     background-color: #fafaff;
 }
+
+/* =================================
+   TASKS HEADER POLISH
+   ================================= */
+
+body.tasks-page .tasks-header {
+    margin-bottom: 26px;
+}
+
+body.tasks-page .tasks-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #1f2937;
+}
+
+body.tasks-page .tasks-header p {
+    font-size: 13px;
+    color: #858894;
+    margin-top: 4px;
+}
+
+/* =================================
+   TASK CONTROLS POLISH
+   ================================= */
+
+body.tasks-page .task-controls {
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e7e7ee;
+    border-radius: 12px;
+    margin-bottom: 18px;
+}
+
+body.tasks-page .search-box {
+    flex: 1;
+}
+
+body.tasks-page .search-box input {
+    width: 100%;
+    max-width: 320px;
+    background: #fafafa;
+    border-color: #e7e7ee;
+    transition: 0.2s ease;
+}
+
+body.tasks-page .search-box input:focus {
+    background: #ffffff;
+    border-color: #5b5bd6;
+    box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.08);
+}
+
+body.tasks-page .task-controls-right {
+    gap: 10px;
+}
+
+body.tasks-page .sort-select {
+    background: #fafafa;
+    border-color: #e7e7ee;
+}
+
+body.tasks-page .filters {
+    background: #f5f5f7;
+    padding: 3px;
+    border-radius: 8px;
+    gap: 2px;
+}
+
+body.tasks-page .filter-button {
+    padding: 7px 11px;
+    border-radius: 6px;
+}
+
+body.tasks-page .filter-button.active {
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* =================================
+   TASK CARD POLISH
+   ================================= */
+
+body.tasks-page .task-list {
+    gap: 10px;
+}
+
+body.tasks-page .task-card {
+    position: relative;
+    padding: 17px 18px;
+    border-radius: 12px;
+    border-color: #e8e8ee;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+body.tasks-page .task-card:hover {
+    transform: translateY(-1px);
+    border-color: #dcdced;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* Checkbox */
+
+body.tasks-page .task-checkbox input {
+    width: 18px;
+    height: 18px;
+    accent-color: #5b5bd6;
+}
+
+/* Task title */
+
+body.tasks-page .task-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #252936;
+    margin-bottom: 4px;
+}
+
+body.tasks-page .task-info p {
+    color: #858894;
+    line-height: 1.45;
+}
+
+/* Task metadata */
+
+body.tasks-page .task-meta {
+    align-items: center;
+    gap: 10px;
+}
+
+body.tasks-page .task-meta span {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Priority badges */
+
+body.tasks-page .priority {
+    padding: 5px 10px;
+    font-size: 10px;
+    letter-spacing: 0.2px;
+}
+
+/* Category badge */
+
+body.tasks-page .task-category {
+    padding: 4px 9px;
+    background: #f4f4f7;
+    color: #686b76;
+}
+
+/* Completed tasks */
+
+body.tasks-page .task-card.completed {
+    opacity: 0.6;
+    background: #fafafa;
+}
+
+body.tasks-page .task-card.completed .task-info h3,
+body.tasks-page .task-card.completed .task-info p {
+    color: #8b8d96;
+}
+
+/* Three-dot menu */
+
+body.tasks-page .task-menu {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    color: #a0a2aa;
+}
+
+body.tasks-page .task-menu:hover {
+    background: #f3f3f6;
+    color: #4b4d58;
+}
