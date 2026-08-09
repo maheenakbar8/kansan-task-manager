@@ -4,6 +4,8 @@
 
 let tasks = [];
 let editingTaskId = null;
+let taskToDeleteId = null;
+
 
 // =================================
 // DOM ELEMENTS
@@ -12,6 +14,18 @@ let editingTaskId = null;
 const addTaskButton = document.querySelector(".add-task-button");
 
 const taskModal = document.querySelector("#task-modal");
+const deleteModal = document.querySelector("#delete-modal");
+
+const closeDeleteModalButton =
+    document.querySelector("#close-delete-modal");
+
+const cancelDeleteButton =
+    document.querySelector("#cancel-delete");
+
+const confirmDeleteButton =
+    document.querySelector("#confirm-delete");
+
+
 
 const closeModalButton = document.querySelector("#close-modal");
 
@@ -386,6 +400,26 @@ function openModal() {
 
 }
 
+// =================================
+// DELETE CONFIRMATION MODAL
+// =================================
+
+function openDeleteModal(taskId) {
+
+    taskToDeleteId = taskId;
+
+    deleteModal.classList.add("show");
+
+}
+
+
+function closeDeleteModal() {
+
+    deleteModal.classList.remove("show");
+
+    taskToDeleteId = null;
+
+}
 
 // =================================
 // CLOSE MODAL
@@ -1002,6 +1036,7 @@ updateUpcomingTasks();
 
 });
 
+
 // =================================
 // DELETE TASK
 // =================================
@@ -1012,31 +1047,54 @@ taskList.addEventListener("click", function (event) {
         return;
     }
 
-   const taskCard = event.target.closest(".task-card");
+    const taskCard = event.target.closest(".task-card");
 
-const taskActions = event.target.closest(".task-actions");
+    const taskId = Number(taskCard.dataset.id);
 
-const taskId = Number(taskCard.dataset.id);
-
-   tasks = tasks.filter(function (task) {
-    return task.id !== taskId;
-});
-
-taskActions.classList.remove("open");
-
-
-saveTasks();
-
-renderTasks();
-
-updateStats();
-
-updateProgress();
-updateTodayTasks();
-
-updateUpcomingTasks();
+    openDeleteModal(taskId);
 
 });
+
+
+// =================================
+// CONFIRM DELETE
+// =================================
+
+confirmDeleteButton.addEventListener("click", function () {
+
+    if (taskToDeleteId === null) {
+        return;
+    }
+
+    tasks = tasks.filter(function (task) {
+        return task.id !== taskToDeleteId;
+    });
+
+    saveTasks();
+
+    renderTasks();
+
+    updateStats();
+
+    updateProgress();
+
+    updateTodayTasks();
+
+    updateUpcomingTasks();
+
+    closeDeleteModal();
+
+});
+
+cancelDeleteButton.addEventListener(
+    "click",
+    closeDeleteModal
+);
+
+closeDeleteModalButton.addEventListener(
+    "click",
+    closeDeleteModal
+);
 
 // =================================
 // SAVE TASKS

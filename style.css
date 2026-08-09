@@ -1292,3 +1292,28 @@ body.tasks-page .tasks-section {
 .sort-select:focus {
     border-color: #5b5bd6;
 }
+
+
+/* ================================
+   DELETE CONFIRMATION
+================================ */
+
+.delete-confirm-button {
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    background-color: #dc2626;
+
+    color: #ffffff;
+}
+
+.delete-confirm-button:hover {
+    background-color: #b91c1c;
+}
