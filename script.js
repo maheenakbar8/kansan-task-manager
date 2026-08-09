@@ -38,6 +38,7 @@ const activeTasksElement = document.querySelector("#active-tasks");
 
 const overdueTasksElement = document.querySelector("#overdue-tasks");
 const searchInput = document.querySelector("#search-input");
+const sortSelect = document.querySelector("#sort-select");
 
 const filterButtons = document.querySelectorAll(".filter-button");
 const modalTitle = document.querySelector("#modal-title");
@@ -471,6 +472,12 @@ searchInput.addEventListener("input", function () {
 
 });
 
+sortSelect.addEventListener("change", function () {
+
+    renderTasks();
+
+});
+
 // =================================
 // SIDEBAR NAVIGATION
 // =================================
@@ -757,6 +764,46 @@ const filteredTasks = tasks.filter(function (task) {
        matchesFilter &&
        matchesView &&
        matchesCategory;
+
+});
+
+const sortValue = sortSelect.value;
+
+filteredTasks.sort(function (a, b) {
+
+    if (sortValue === "created") {
+
+        return b.id - a.id;
+
+    }
+
+    if (sortValue === "oldest") {
+
+        return a.id - b.id;
+
+    }
+
+    if (sortValue === "due-date") {
+
+        if (!a.dueDate) return 1;
+        if (!b.dueDate) return -1;
+
+        return a.dueDate.localeCompare(b.dueDate);
+
+    }
+
+    if (sortValue === "priority") {
+
+        const priorityOrder = {
+            high: 1,
+            medium: 2,
+            low: 3
+        };
+
+        return priorityOrder[a.priority] -
+               priorityOrder[b.priority];
+
+    }
 
 });
 

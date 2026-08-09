@@ -283,33 +283,49 @@
 
         </div>
 
-        <div class="task-controls">
+       <div class="task-controls">
 
-            <div class="search-box">
-                <input
-                    type="text"
-                    id="search-input"
-                    placeholder="Search tasks..."
-                >
-            </div>
+    <div class="search-box">
+        <input
+            type="text"
+            id="search-input"
+            placeholder="Search tasks..."
+        >
+    </div>
 
-            <div class="filters">
+    <div class="task-controls-right">
 
-                <button class="filter-button active">
-                    All
-                </button>
+        <select id="sort-select" class="sort-select">
 
-                <button class="filter-button">
-                    Active
-                </button>
+            <option value="created">Newest</option>
 
-                <button class="filter-button">
-                    Completed
-                </button>
+            <option value="oldest">Oldest</option>
 
-            </div>
+            <option value="due-date">Due date</option>
+
+            <option value="priority">Priority</option>
+
+        </select>
+
+        <div class="filters">
+
+            <button class="filter-button active">
+                All
+            </button>
+
+            <button class="filter-button">
+                Active
+            </button>
+
+            <button class="filter-button">
+                Completed
+            </button>
 
         </div>
+
+    </div>
+
+</div>
 
         <div class="task-list"></div>
 
