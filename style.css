@@ -1317,3 +1317,29 @@ body.tasks-page .tasks-section {
 .delete-confirm-button:hover {
     background-color: #b91c1c;
 }
+
+/* =================================
+   SIDEBAR POLISH
+   ================================= */
+
+/* Keep sidebar fixed while content grows */
+.sidebar {
+    height: 100vh;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+}
+
+/* Let categories use the available middle space */
+.categories {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/* Keep Settings at the bottom */
+.sidebar-bottom {
+    margin-top: auto;
+    flex-shrink: 0;
+}
