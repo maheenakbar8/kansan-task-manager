@@ -1343,3 +1343,222 @@ body.tasks-page .tasks-section {
     margin-top: auto;
     flex-shrink: 0;
 }
+
+/* =================================
+   KANSAN — BRANDING
+   ================================= */
+
+.logo h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1.8px;
+    line-height: 1;
+
+    background: linear-gradient(
+        135deg,
+        #1f2937 20%,
+        #5b5bd6 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    transition: opacity 0.2s ease;
+}
+
+.logo h1::after {
+    content: ".";
+    color: #5b5bd6;
+    -webkit-text-fill-color: #5b5bd6;
+}
+
+.logo h1:hover {
+    opacity: 0.8;
+}
+
+
+/* =================================
+   DASHBOARD HEADER POLISH
+   ================================= */
+
+body:not(.tasks-page) .top-bar {
+    margin-bottom: 30px;
+}
+
+body:not(.tasks-page) .page-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #a0a0ad;
+    margin-bottom: 8px;
+}
+
+body:not(.tasks-page) .top-bar h2 {
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -1px;
+    margin-bottom: 7px;
+}
+
+body:not(.tasks-page) .subtitle {
+    font-size: 14px;
+    color: #7b8190;
+}
+
+
+
+
+
+/* =================================
+   DASHBOARD STAT CARDS
+   ================================= */
+
+body:not(.tasks-page) .stats {
+    gap: 14px;
+    margin-bottom: 38px;
+}
+
+body:not(.tasks-page) .stat-card {
+    padding: 20px 21px;
+
+    border-radius: 14px;
+    border: 1px solid #e7e7ee;
+
+    background: #ffffff;
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+body:not(.tasks-page) .stat-card:hover {
+    transform: translateY(-2px);
+
+    border-color: #dcdce8;
+
+    box-shadow: 0 6px 18px rgba(31, 41, 55, 0.06);
+}
+
+body:not(.tasks-page) .stat-card p {
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+
+    color: #9a9aa7;
+
+    margin-bottom: 10px;
+}
+
+body:not(.tasks-page) .stat-card h3 {
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -1px;
+    color: #1f2937;
+}
+
+
+/* =================================
+   DASHBOARD OVERVIEW CARDS
+   ================================= */
+
+body:not(.tasks-page) .dashboard-overview {
+    gap: 18px;
+    margin-bottom: 38px;
+}
+
+body:not(.tasks-page) .dashboard-card {
+    border-radius: 14px;
+    border: 1px solid #e7e7ee;
+    padding: 24px;
+
+    box-shadow: 0 2px 8px rgba(31, 41, 55, 0.025);
+}
+
+/* Card headers */
+
+body:not(.tasks-page) .dashboard-card-header {
+    margin-bottom: 18px;
+}
+
+body:not(.tasks-page) .dashboard-card-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    color: #1f2937;
+}
+
+body:not(.tasks-page) .dashboard-card-header p {
+    color: #8b8d98;
+}
+
+/* View all */
+
+body:not(.tasks-page) .view-all-link {
+    padding: 5px 8px;
+    border-radius: 6px;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+body:not(.tasks-page) .view-all-link:hover {
+    background-color: #f0f0ff;
+    text-decoration: none;
+}
+
+/* Today's task rows */
+
+body:not(.tasks-page) .dashboard-task {
+    padding: 12px 8px;
+    margin: 0 -8px;
+
+    border-bottom: 1px solid #f1f1f5;
+    border-radius: 7px;
+
+    transition: background-color 0.15s ease;
+}
+
+body:not(.tasks-page) .dashboard-task:hover {
+    background-color: #fafaff;
+}
+
+body:not(.tasks-page) .dashboard-task-info h3 {
+    color: #374151;
+}
+
+/* Progress card */
+
+body:not(.tasks-page) .progress-content {
+    padding: 12px 4px 6px;
+}
+
+body:not(.tasks-page) .progress-number strong {
+    font-size: 40px;
+    letter-spacing: -1.5px;
+    color: #1f2937;
+}
+
+body:not(.tasks-page) .progress-number span {
+    margin-top: 2px;
+    color: #9a9aa7;
+}
+
+body:not(.tasks-page) .progress-bar {
+    height: 9px;
+    margin-bottom: 15px;
+    background-color: #f0f0f4;
+}
+
+body:not(.tasks-page) .progress-fill {
+    background-color: #5b5bd6;
+}
+
+body:not(.tasks-page) .progress-message {
+    color: #7b8190;
+}
