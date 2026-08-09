@@ -401,6 +401,9 @@ function openModal() {
 
     taskModal.classList.add("show");
 
+    taskPriorityInput.value =
+        localStorage.getItem("kansanDefaultPriority") || "medium";
+
 }
 
 // =================================
@@ -799,7 +802,7 @@ taskForm.addEventListener("submit", function (event) {
 
             description: taskDescriptionInput.value.trim(),
 
-            priority: taskPriorityInput.value,
+            priority: defaultPrioritySelect.value,
 
             category: taskCategoryInput.value,
 
@@ -1290,3 +1293,64 @@ function getTodayDate() {
 
     return `${year}-${month}-${day}`;
 }
+
+// =================================
+// =================================
+// SETTINGS
+// =================================
+
+const themeSelect = document.querySelector("#theme-select");
+
+const defaultPrioritySelect =
+    document.querySelector("#default-priority");
+
+
+defaultPrioritySelect.addEventListener("change", function () {
+
+    localStorage.setItem(
+        "kansanDefaultPriority",
+        defaultPrioritySelect.value
+    );
+
+});
+
+const savedDefaultPriority =
+    localStorage.getItem("kansanDefaultPriority") || "medium";
+
+defaultPrioritySelect.value = savedDefaultPriority;
+
+function applyTheme(theme) {
+
+    if (theme === "soft") {
+
+        document.body.classList.add("soft-theme");
+        themeSelect.value = "soft";
+
+    } else {
+
+        document.body.classList.remove("soft-theme");
+        themeSelect.value = "light";
+
+    }
+
+}
+
+
+themeSelect.addEventListener("change", function () {
+
+    const selectedTheme = themeSelect.value;
+
+    applyTheme(selectedTheme);
+
+    localStorage.setItem(
+        "kansanTheme",
+        selectedTheme
+    );
+
+});
+
+
+const savedTheme =
+    localStorage.getItem("kansanTheme") || "light";
+
+applyTheme(savedTheme);

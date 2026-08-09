@@ -2012,3 +2012,37 @@ body.settings-page .settings-section {
 .setting-row select:focus {
     border-color: #5b5bd6;
 }
+
+
+
+/* ================================
+   SOFT THEME
+================================ */
+
+body.soft-theme {
+    background-color: #f4f3fb;
+}
+
+body.soft-theme .sidebar {
+    background-color: #faf9ff;
+    border-right-color: #e4e1f2;
+}
+
+body.soft-theme .stat-card,
+body.soft-theme .dashboard-card,
+body.soft-theme .task-card,
+body.soft-theme .settings-card,
+body.soft-theme .task-modal {
+    background-color: #faf9ff;
+    border-color: #e4e1f2;
+}
+
+body.soft-theme .search-box input,
+body.soft-theme .sort-select,
+body.soft-theme .form-group input,
+body.soft-theme .form-group textarea,
+body.soft-theme .form-group select,
+body.soft-theme .setting-row select {
+    background-color: #faf9ff;
+    border-color: #e4e1f2;
+}
