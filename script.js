@@ -70,6 +70,7 @@ const categoryItems = document.querySelectorAll(".category-item");
 
 let currentFilter = "all";
 let currentView = "dashboard";
+let currentCategory = "all";
 
 // =================================
 // UPDATE STATISTICS
@@ -555,27 +556,32 @@ categoryItems.forEach(function (item) {
 
         event.preventDefault();
 
+        const category = item.dataset.category;
+
+currentView = "tasks";
+currentCategory = category;
+
+        // Show Tasks page
+        document.body.classList.add("tasks-page");
+
+        // Update active sidebar item
         navItems.forEach(function (navItem) {
-
             navItem.classList.remove("active");
-
         });
 
         categoryItems.forEach(function (categoryItem) {
-
             categoryItem.classList.remove("active");
-
         });
 
         item.classList.add("active");
 
-        const category = item.dataset.category;
-
-        console.log("Category:", category);
+        // Render tasks
+        renderTasks();
 
     });
 
 });
+
 
 // =================================
 // TASK MENU
@@ -712,6 +718,10 @@ const filteredTasks = tasks.filter(function (task) {
         (currentFilter === "active" && !task.completed) ||
         (currentFilter === "completed" && task.completed);
 
+    const matchesCategory =
+    currentCategory === "all" ||
+    task.category === currentCategory;
+
 
     let matchesView = true;
 
@@ -732,7 +742,10 @@ const filteredTasks = tasks.filter(function (task) {
     }
 
 
-    return matchesSearch && matchesFilter && matchesView;
+    return matchesSearch &&
+       matchesFilter &&
+       matchesView &&
+       matchesCategory;
 
 });
 
