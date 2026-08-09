@@ -617,20 +617,44 @@ pageLinks.forEach(function (item) {
 
 
         // =============================
-        // DASHBOARD
-        // =============================
+// DASHBOARD
+// =============================
 
-        if (page === "dashboard") {
+if (page === "dashboard") {
 
-            document.body.classList.remove("tasks-page");
+    document.body.classList.remove("tasks-page");
+    document.body.classList.remove("settings-page");
 
-            updateStats();
-            updateProgress();
-            updateTodayTasks();
-            updateUpcomingTasks();
+    updateStats();
+    updateProgress();
+    updateTodayTasks();
+    updateUpcomingTasks();
 
-            return;
-        }
+    return;
+}
+
+
+// =============================
+// SETTINGS
+// =============================
+
+if (page === "settings") {
+
+    document.body.classList.remove("tasks-page");
+    document.body.classList.add("settings-page");
+
+    return;
+}
+
+
+// =============================
+// TASKS / TODAY / UPCOMING
+// =============================
+
+document.body.classList.remove("settings-page");
+document.body.classList.add("tasks-page");
+
+renderTasks();
 
 
         // =============================

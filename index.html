@@ -63,10 +63,10 @@
             </div>
 
             <div class="sidebar-bottom">
-                <a href="#" class="nav-item">
-                    Settings
-                </a>
-            </div>
+    <a href="#" class="nav-item" data-page="settings">
+        Settings
+    </a>
+</div>
 
         </aside>
 
@@ -265,6 +265,68 @@
 </div>
 
 
+<!-- Settings -->
+<section class="settings-section">
+
+    <div class="settings-header">
+        <div>
+            <p class="page-label">Preferences</p>
+            <h2>Settings</h2>
+            <p class="subtitle">
+                Manage your Kansan preferences.
+            </p>
+        </div>
+    </div>
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+            <div>
+                <h3>Appearance</h3>
+                <p>Customize how Kansan looks.</p>
+            </div>
+        </div>
+
+        <div class="setting-row">
+            <div>
+                <strong>Theme</strong>
+                <p>Choose your preferred appearance.</p>
+            </div>
+
+            <select id="theme-select">
+                <option value="light">Light</option>
+                <option value="soft">Soft</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+            <div>
+                <h3>Task Preferences</h3>
+                <p>Manage your task display.</p>
+            </div>
+        </div>
+
+        <div class="setting-row">
+            <div>
+                <strong>Default priority</strong>
+                <p>Priority used when creating new tasks.</p>
+            </div>
+
+            <select id="default-priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+
+    </div>
+
+</section>
+
     <!-- Tasks -->
     <section class="tasks-section" id="tasks-view">
 
@@ -330,6 +392,65 @@
         <div class="task-list"></div>
 
     </section>
+
+    <!-- Settings -->
+<section class="settings-section" id="settings-view">
+
+    <div class="settings-header">
+        <div>
+            <p class="page-label">Preferences</p>
+            <h2>Settings</h2>
+            <p class="subtitle">
+                Customize how Kansan looks and behaves.
+            </p>
+        </div>
+    </div>
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+            <div>
+                <h3>Appearance</h3>
+                <p>Choose how Kansan looks on your screen.</p>
+            </div>
+        </div>
+
+        <div class="setting-row">
+            <div>
+                <strong>Accent color</strong>
+                <span>Use Kansan's signature purple throughout the app.</span>
+            </div>
+
+            <div class="accent-preview">
+                <span></span>
+                Purple
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+            <div>
+                <h3>About Kansan</h3>
+                <p>A simple place to organize what needs to get done.</p>
+            </div>
+        </div>
+
+        <div class="setting-row">
+            <div>
+                <strong>Version</strong>
+                <span>Kansan Task Manager</span>
+            </div>
+
+            <span class="settings-version">1.0</span>
+        </div>
+
+    </div>
+
+</section>
 
 </main>
            

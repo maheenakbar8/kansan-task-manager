@@ -1768,3 +1768,247 @@ body.tasks-page .task-menu:hover {
     background: #f3f3f6;
     color: #4b4d58;
 }
+
+
+/* =================================
+   SETTINGS PAGE
+   ================================= */
+
+.settings-section {
+    display: none;
+    max-width: 900px;
+}
+
+body.settings-page .dashboard-view,
+body.settings-page .tasks-section {
+    display: none;
+}
+
+body.settings-page .settings-section {
+    display: block;
+}
+
+.settings-header {
+    margin-bottom: 32px;
+}
+
+.settings-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    margin-bottom: 6px;
+}
+
+.settings-card {
+    background: #ffffff;
+    border: 1px solid #e7e7ee;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.settings-card-header {
+    padding: 20px 22px;
+    border-bottom: 1px solid #f0f0f3;
+}
+
+.settings-card-header h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.settings-card-header p {
+    font-size: 13px;
+    color: #858894;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 22px;
+}
+
+.setting-row strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.setting-row span {
+    display: block;
+    font-size: 12px;
+    color: #858894;
+}
+
+.accent-preview {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4b4d58 !important;
+    font-size: 13px !important;
+}
+
+.accent-preview span {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #5b5bd6;
+    display: block;
+}
+
+.settings-version {
+    color: #858894;
+    font-size: 13px !important;
+}
+
+
+/* =================================
+   KANSAN COLOR POLISH
+   ================================= */
+
+body {
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(91, 91, 214, 0.07),
+            transparent 28%
+        ),
+        #f7f7fb;
+}
+
+/* Give the main workspace a little breathing room */
+
+.main-content {
+    background: transparent;
+}
+
+/* Slightly softer cards */
+
+.stat-card,
+.dashboard-card,
+.task-card,
+.settings-card {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+/* Subtle accent on active navigation */
+
+.nav-item.active {
+    box-shadow: inset 3px 0 0 #5b5bd6;
+}
+
+/* Make important numbers feel more intentional */
+
+.stat-card h3 {
+    color: #292b38;
+}
+
+/* Purple accent for progress */
+
+.progress-fill {
+    background: linear-gradient(
+        90deg,
+        #5b5bd6,
+        #7474e3
+    );
+}
+
+/* Slightly more personality for the main buttons */
+
+.add-task-button,
+.submit-button {
+    box-shadow: 0 4px 10px rgba(91, 91, 214, 0.18);
+}
+
+.add-task-button:hover,
+.submit-button:hover {
+    box-shadow: 0 5px 14px rgba(91, 91, 214, 0.24);
+}
+
+/* ================================
+   SETTINGS
+================================ */
+
+.settings-section {
+    display: none;
+    max-width: 800px;
+}
+
+body.settings-page .dashboard-view,
+body.settings-page .tasks-section {
+    display: none;
+}
+
+body.settings-page .settings-section {
+    display: block;
+}
+
+.settings-header {
+    margin-bottom: 30px;
+}
+
+.settings-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    margin-bottom: 6px;
+}
+
+.settings-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 16px;
+}
+
+.settings-card-header {
+    padding-bottom: 18px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.settings-card-header h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.settings-card-header p {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 0;
+}
+
+.setting-row strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.setting-row p {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.setting-row select {
+    min-width: 130px;
+    padding: 8px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #4b5563;
+    outline: none;
+}
+
+.setting-row select:focus {
+    border-color: #5b5bd6;
+}
