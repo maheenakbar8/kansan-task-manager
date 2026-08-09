@@ -137,13 +137,12 @@ function updateProgress() {
 
 
     const percentage = Math.round(
-        (completedTasks / totalTasks) * 100
-    );
+    (completedTasks / totalTasks) * 100
+);
 
+progressPercentage.textContent = `${percentage}%`;
 
-    progressPercentage.textContent = `${percentage}%`;
-
-    progressFill.style.width = `${percentage}%`;
+progressFill.style.width = `${percentage}%`;
 
 
     if (percentage === 100) {
@@ -449,7 +448,7 @@ function setActiveNav(activeLink) {
 
 
 
-
+       
 // =================================
 // EVENT LISTENERS
 // =================================
@@ -471,64 +470,7 @@ searchInput.addEventListener("input", function () {
 // SIDEBAR NAVIGATION
 // =================================
 
-dashboardLink.addEventListener("click", function (event) {
 
-    event.preventDefault();
-
-    currentView = "dashboard";
-
-    setActiveNav(dashboardLink);
-
-    taskList.closest(".tasks-section").classList.remove("active-view");
-
-    renderTasks();
-
-});
-
-
-tasksLink.addEventListener("click", function (event) {
-
-    event.preventDefault();
-
-    currentView = "tasks";
-
-    setActiveNav(tasksLink);
-
-    taskList.closest(".tasks-section").classList.add("active-view");
-
-    renderTasks();
-
-});
-
-
-todayLink.addEventListener("click", function (event) {
-
-    event.preventDefault();
-
-    currentView = "today";
-
-    setActiveNav(todayLink);
-
-    taskList.closest(".tasks-section").classList.add("active-view");
-
-    renderTasks();
-
-});
-
-
-upcomingLink.addEventListener("click", function (event) {
-
-    event.preventDefault();
-
-    currentView = "upcoming";
-
-    setActiveNav(upcomingLink);
-
-    taskList.closest(".tasks-section").classList.add("active-view");
-
-    renderTasks();
-
-});
 
 taskList.addEventListener("click", function (event) {
 
@@ -548,6 +490,59 @@ taskList.addEventListener("click", function (event) {
 
 });
 
+
+// =================================
+// PAGE NAVIGATION
+// =================================
+
+navItems.forEach(function (item) {
+
+    item.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        const page = item.dataset.page;
+
+        currentView = page;
+
+        // Update active navigation item
+        navItems.forEach(function (navItem) {
+
+            navItem.classList.remove("active");
+
+        });
+
+        item.classList.add("active");
+
+
+        // =============================
+        // DASHBOARD
+        // =============================
+
+        if (page === "dashboard") {
+
+            document.body.classList.remove("tasks-page");
+
+            updateStats();
+            updateProgress();
+            updateTodayTasks();
+            updateUpcomingTasks();
+
+            return;
+        }
+
+
+        // =============================
+        // TASKS / TODAY / UPCOMING
+        // =============================
+
+        document.body.classList.add("tasks-page");
+
+        renderTasks();
+
+    });
+
+});
 
 
 // =================================
@@ -693,6 +688,10 @@ taskForm.addEventListener("submit", function (event) {
 
 function renderTasks() {
 
+
+     console.log("renderTasks called");
+    console.log("Number of tasks:", tasks.length);
+
     taskList.innerHTML = "";
 
 
@@ -736,6 +735,10 @@ const filteredTasks = tasks.filter(function (task) {
     return matchesSearch && matchesFilter && matchesView;
 
 });
+
+console.log("Current view:", currentView);
+console.log("Current filter:", currentFilter);
+console.log("Filtered tasks:", filteredTasks.length);
 
     if (searchTerm || currentFilter !== "all") {
 
@@ -950,7 +953,7 @@ function loadTasks() {
 
     updateStats();
 
-    renderTasks();
+    
 
 
 updateProgress();
@@ -960,7 +963,11 @@ updateUpcomingTasks();
 
 }
 
+
+
 loadTasks();
+
+console.log("Tasks:", tasks);
 
 filterButtons.forEach(function (button) {
 

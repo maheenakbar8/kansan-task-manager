@@ -1240,22 +1240,22 @@ a {
 }
 
 /* ================================
-   18. PAGE VIEWS
+   PAGE VIEWS
 ================================ */
-
-.dashboard-view {
-    display: block;
-}
 
 .tasks-section {
     display: none;
 }
 
-.dashboard-view.active-view {
+.dashboard-view {
     display: block;
 }
 
-.tasks-section.active-view {
+body.tasks-page .dashboard-view {
+    display: none;
+}
+
+body.tasks-page .tasks-section {
     display: block;
 }
 
